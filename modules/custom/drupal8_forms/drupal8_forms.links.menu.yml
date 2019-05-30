@@ -1,0 +1,6 @@
+drupal_forms.addlink:
+  title: Custom Add User
+  description: 'Custom Add Form.'
+  route_name: drupal8_forms.add
+  parent: system.admin
+  weight: -10

@@ -1,0 +1,43 @@
+
+<?php
+
+/**
+ * Implements hook_schema().
+ *
+ * Defines the database tables used by this module.
+ *
+ * @see hook_schema()
+ *
+ * @ingroup dbtng_example
+ */
+function drupal8_forms_schema() {
+  $schema['drupal8_forms'] = [
+    'description' => 'Stores example entries for use of FORMAPI purposes.',
+    'fields' => [
+      'pid' => [
+        'type' => 'serial',
+        'not null' => TRUE,
+        'description' => 'Primary Key: Unique person ID.',
+      ],
+      'first_name' => [
+        'type' => 'varchar',
+        'length' => 255,
+        'default' => 0,
+        'description' => "First Name.",
+      ],
+      'last_name' => [
+        'type' => 'varchar',
+        'length' => 255,
+        'not null' => TRUE,
+        'default' => '',
+        'description' => 'Last Name.',
+      ],
+    ],
+    'primary key' => ['pid'],
+    'indexes' => [
+      'first_name' => ['first_name'],
+      'last_name' => ['last_name'],
+    ],
+  ];
+  return $schema;
+}

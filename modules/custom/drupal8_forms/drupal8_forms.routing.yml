@@ -1,0 +1,7 @@
+drupal8_forms.add:
+  path: '/examples/dbtng-example/add'
+  defaults:
+    _title: 'Add entry'
+    _form: '\Drupal\drupal8_forms\Form\DbExampleAddForm'
+  requirements:
+    _permission: 'access content'

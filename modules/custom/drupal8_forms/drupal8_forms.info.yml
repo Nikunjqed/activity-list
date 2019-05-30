@@ -1,0 +1,5 @@
+name: Drupal8 Module Development FormsAPI
+description: D8 Module Development FormsAPI
+type: module
+core: 8.x
+package: Custom
