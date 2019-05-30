@@ -6,3 +6,12 @@ drupal8_development.user_tab_route:
   requirements:
     _permission: 'access content'
     user: \d+
+
+drupal8_development.sayHi:
+  path: '/hello/{name}'
+  defaults: 
+    _title: 'Say Hi'
+    _controller: 'Drupal\drupal8_development\Controller\SimpleCallback::sayHiAction'
+    name: 'there'
+  requirements:
+      _permission: 'access content'
