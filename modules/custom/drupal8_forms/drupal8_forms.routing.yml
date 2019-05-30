@@ -5,3 +5,11 @@ drupal8_forms.add:
     _form: '\Drupal\drupal8_forms\Form\DbExampleAddForm'
   requirements:
     _permission: 'access content'
+
+drupal8_forms.ajax:
+  path: '/examples/dbtng-example/ajax'
+  defaults:
+    _title: 'Add entry'
+    _form: '\Drupal\drupal8_forms\Form\ExampleAjaxForm'
+  requirements:
+    _permission: 'access content'
