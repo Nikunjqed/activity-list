@@ -1,0 +1,5 @@
+name: 'D8CACHE'
+type: module
+description: 'Cache API'
+core: 8.x
+package: 'Custom'

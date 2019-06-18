@@ -1,0 +1,22 @@
+
+d8_cache.default_controller_cacheMaxAge:
+  path: '/d8_cache/max-age'
+  defaults:
+    _controller: '\Drupal\d8_cache\Controller\DefaultController::cacheMaxAge'
+    _title: 'cacheMaxAge'
+  requirements:
+    _permission: 'access content'
+d8_cache.default_controller_cacheContextsByUrl:
+  path: '/d8_cache/contexts'
+  defaults:
+    _controller: '\Drupal\d8_cache\Controller\DefaultController::cacheContextsByUrl'
+    _title: 'cacheContextsByUrl'
+  requirements:
+    _permission: 'access content'
+d8_cache.default_controller_cacheTags:
+  path: '/d8_cache/tags'
+  defaults:
+    _controller: '\Drupal\d8_cache\Controller\DefaultController::cacheTags'
+    _title: 'cacheTags'
+  requirements:
+    _permission: 'access content'
