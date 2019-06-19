@@ -1,0 +1,8 @@
+access cache:
+  title: 'Administer cache settings'
+  description: 'Test Permisions'
+  restrict access: true
+
+permission_callbacks:
+  - \Drupal\d8_cache\Cache::getPermissions
+

@@ -46,15 +46,20 @@ class DefaultController extends ControllerBase {
    *   Return Hello string.
    */
   public function cacheTags() {
-    $userName = \Drupal::currentUser()->getAccountName();
+    $userName = '';
     $cacheTags = User::load(\Drupal::currentUser()->id())->getCacheTags();
+    $userName = \Drupal::currentUser()->getAccountName();
+    
     return [
-      '#markup' => t('WeKnow is the coolest! Do you agree @userName ?', ['@userName' => $userName]),
+      '#markup' => t('WeKnow isssssss the coolest! Do you agree @userName ?', ['@userName' => $userName]),
       '#cache' => [
         // We need to use entity->getCacheTags() instead of hardcoding "user:2"(where 2 is uid) or trying to memorize each pattern.
         'tags' => $cacheTags,
+        //'max-age' => 0,
       ]
     ];
   }
+
+
 
 }

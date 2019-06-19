@@ -6,6 +6,7 @@ use Drupal\Core\Block\BlockBase;
 use Drupal\Core\Controller\ControllerBase;
 use Drupal\Core\Cache\Cache;
 use Drupal\user\Entity\User;
+use Drupal\node\Entity\Node;
 
 /**
  * Provides a 'D8CacheBlock' Block.
@@ -24,18 +25,44 @@ class D8CacheBlock extends BlockBase {
 
   public function build() {
 
-  	$userName = \Drupal::currentUser()->getAccountName();
-    $cacheTags = User::load(\Drupal::currentUser()->id())->getCacheTags();
+   $build = array();
 
-    return array(
-      '#theme' => 'd8cacheblock',
-            '#title' => 'User Detail',
-            '#nodetitle' => $userName,
-            '#cache' => [
-              // We need to use entity->getCacheTags() instead of hardcoding "user:2"(where 2 is uid) or trying to memorize each pattern.
-              'tags' => $cacheTags,
-      ]
-    );
+    $query = \Drupal::entityQuery('node')
+      ->condition('status', 1) //published or not
+      ->condition('type', 'article') //content type
+      ->sort('changed' , 'DESC')
+      ->range(0, 1);
+    $nids = $query->execute();
+
+    foreach ($nids as $nidkey => $nidvalue) {
+      $node = Node::load($nidvalue);
+      $title = $node->label();
+    }
+
+
+    kint($this);
+
+    if ($nids) {
+      $build = array(
+        '#type' => 'markup',
+        '#markup' => '<p>' . $title . '<p>',
+        '#cache' => array(
+          //'tags' => ['node_list'],
+          //'contexts' => ['url.path.is_front'],
+          //'max-age' => 10, 
+          //'tags' => $this->getCacheTags(),
+          //'contexts' => $this->getCacheContexts(),
+        ),
+      );
+    }
+    else{
+      $build = array(
+        '#type' => 'markup',
+        '#markup' => '<p>test comming<p>',
+      );
+    }
+
+    return $build;
   }
 
 }
