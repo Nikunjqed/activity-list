@@ -1,0 +1,3 @@
+services:
+  latest_feeds.feed:
+    class: \Drupal\latest_feeds\LatestFeedsService

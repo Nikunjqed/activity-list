@@ -1,0 +1,5 @@
+name: Latest Feeds Update Module
+description: Shows Latest Blogs to the end users.
+type: module
+core: 8.x
+package: Custom

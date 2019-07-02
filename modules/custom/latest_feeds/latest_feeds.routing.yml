@@ -1,0 +1,8 @@
+latest_feeds.type:
+  path: '/latest/{type}'
+  defaults: 
+    _title: 'Latest Feeds'
+    _controller: 'Drupal\latest_feeds\Controller\LatestFeeds::getFeed'
+    type: 'article'
+  requirements:
+      _permission: 'access content'
