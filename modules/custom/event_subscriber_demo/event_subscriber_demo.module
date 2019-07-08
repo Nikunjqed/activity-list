@@ -6,7 +6,7 @@
  */
 
 use Drupal\Core\Routing\RouteMatchInterface;
-use Drupal\event_subscriber_demo\Event\NodeInsertDemoEvent;
+use Drupal\event_subscriber_demo\Event\EntityUpdateEvent;
 
 /**
  * Implements hook_help().
@@ -25,9 +25,17 @@ function event_subscriber_demo_help($route_name, RouteMatchInterface $route_matc
 }
 
 /**
- * Implements hook_ENTITY_TYPE_insert().
+ * Implements hook_entity_update().
  */
-function event_subscriber_demo_node_insert(Drupal\Core\Entity\EntityInterface $entity) {
-  // Dispatch the node insert demo event so that subscribers can act accordingly.
-  \Drupal::service('event_dispatcher')->dispatch(NodeInsertDemoEvent::DEMO_NODE_INSERT, new NodeInsertDemoEvent($entity));
+function event_subscriber_demo_entity_update(Drupal\Core\Entity\EntityInterface $entity) {
+  \Drupal::service('event_dispatcher')->dispatch(EntityUpdateEvent::ENTITY_UPDATE, new EntityUpdateEvent($entity));
+  $entityID = $entity->id();
+  $entityType = $entity->getEntityTypeId();
+  //dump($entityType.':'.$entityID);
+  //SET REQUEST TIME
+  $request_time = REQUEST_TIME;
+  $request_time = date(DATE_RFC822, $request_time);
+  \Drupal::state()->set('entity_update_hook',$request_time);
+  \Drupal::state()->set('entity_update_type',$entityType);
+  \Drupal::state()->set('entity_update_id',$entityID);
 }
